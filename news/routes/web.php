@@ -24,3 +24,9 @@ Route::get('/', function () {
 // });
 
 Route::get('/categoria/listar', [CategoriaController::class, 'listar']);
+Route::get('/categoria/novo', [CategoriaController::class, 'novo']);
+
+Route::get('/categoria/editar/{id}', [CategoriaController::class, 'editar']);
+Route::get('/categoria/excluir/{id}', [CategoriaController::class, 'excluir']);
+
+Route::post('/categoria/salvar', [CategoriaController::class, 'salvar']);

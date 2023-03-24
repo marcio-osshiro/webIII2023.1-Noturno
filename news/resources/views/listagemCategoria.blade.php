@@ -8,11 +8,14 @@
   </head>
   <body class="container">
     <h1>Listagem de Categorias</h1>
+    <a href="novo" class="btn btn-primary">Novo</a>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
           <th>ID</th>
           <th>Descrição</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -22,27 +25,19 @@
             <tr>
               <td>$categoria->id</td>
               <td>$categoria->descricao</td>
+              <td><a class='btn btn-primary' href='editar/$categoria->id'>+</a></td>
+              <td><a class='btn btn-danger' href='excluir/$categoria->id'>-</a></td>
             </tr>
             ";
         }
+
        ?>
+
      </tbody>
     </table>
 
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  </body>
-</html>
-
-
-
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
   </body>
 </html>
