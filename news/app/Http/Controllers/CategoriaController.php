@@ -36,4 +36,10 @@ class CategoriaController extends Controller
       $categoria = Categoria::find($id);
       return view('frmCategoria', compact('categoria'));
     }
+
+    function excluir($id) {
+      $categoria = Categoria::find($id);
+      $categoria->delete();
+      return redirect('categoria/listar');
+    }
 }
