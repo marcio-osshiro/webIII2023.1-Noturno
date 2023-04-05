@@ -175,6 +175,9 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{url('autor/listar')}}">Autor</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{url('noticia/listar')}}">Noticia</a>
+        </li>
       </ul>
     </div>
   </div>

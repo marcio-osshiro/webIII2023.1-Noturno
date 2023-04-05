@@ -12,7 +12,9 @@ class Noticia extends Model
     use HasFactory;
     protected $table = 'noticia';
     public $timestamps = false;
-
+    protected $casts = [
+        'data' => 'datetime:d/m/Y',
+    ];
     public function categoria(): BelongsTo
     {
        return $this->belongsTo(Categoria::class);

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\AutorController;
+use App\Http\Controllers\NoticiaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,10 @@ Route::get('/autor/novo', [AutorController::class, 'novo']);
 Route::get('/autor/editar/{id}', [AutorController::class, 'editar']);
 Route::get('/autor/excluir/{id}', [AutorController::class, 'excluir']);
 Route::post('/autor/salvar', [AutorController::class, 'salvar']);
+
+
+Route::get('/noticia/listar', [NoticiaController::class, 'listar']);
+Route::get('/noticia/novo', [NoticiaController::class, 'novo']);
+Route::get('/noticia/editar/{id}', [NoticiaController::class, 'editar']);
+Route::get('/noticia/excluir/{id}', [NoticiaController::class, 'excluir']);
+Route::post('/noticia/salvar', [NoticiaController::class, 'salvar']);
