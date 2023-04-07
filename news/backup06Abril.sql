@@ -5,7 +5,7 @@
 -- Dumped from database version 11.18 (Debian 11.18-1.pgdg100+1)
 -- Dumped by pg_dump version 15.1 (Debian 15.1-1.pgdg100+1)
 
--- Started on 2023-04-04 22:29:25 -04
+-- Started on 2023-04-06 22:27:41 -04
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -116,9 +116,9 @@ CREATE TABLE public.noticia (
     id integer NOT NULL,
     titulo character varying(100),
     descricao text,
-    autor character varying(100),
     data date,
-    categoria_id integer
+    categoria_id integer,
+    autor_id integer
 );
 
 
@@ -202,8 +202,9 @@ INSERT INTO public.categoria VALUES (5, 'BBB');
 -- Data for Name: noticia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.noticia VALUES (2, 'Argentina é campeã da copa do mundo', 'Após várias décadas, a Argentina conquista o bi-campeonato da Copa do Mundo. Messi substitui Maradona.', 'Socrates', '2022-11-30', 1);
-INSERT INTO public.noticia VALUES (1, 'Terremoto na Turquia / Europa', 'Um grande terremoto destruiu várias cidades na Turquia. Vários países estão se mobilizando para ajudar no resgate das vítimas.', 'William Bonner', '2023-04-04', 4);
+INSERT INTO public.noticia VALUES (2, 'Argentina é campeã da copa do mundo', 'Após várias décadas, a Argentina conquista o bi-campeonato da Copa do Mundo. Messi substitui Maradona.', '2022-11-30', 1, 3);
+INSERT INTO public.noticia VALUES (1, 'Terremoto na Turquia / Europa', 'Um grande terremoto destruiu várias cidades na Turquia. Vários países estão se mobilizando para ajudar no resgate das vítimas.', '2023-04-04', 4, 3);
+INSERT INTO public.noticia VALUES (7, 'teste 06 de abril', 'teste', '2023-04-06', 3, 3);
 
 
 --
@@ -230,7 +231,7 @@ SELECT pg_catalog.setval('public.categoria_id_seq', 9, true);
 -- Name: noticia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.noticia_id_seq', 6, true);
+SELECT pg_catalog.setval('public.noticia_id_seq', 7, true);
 
 
 --
@@ -270,7 +271,7 @@ REVOKE USAGE ON SCHEMA public FROM PUBLIC;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2023-04-04 22:29:26 -04
+-- Completed on 2023-04-06 22:27:41 -04
 
 --
 -- PostgreSQL database dump complete

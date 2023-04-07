@@ -20,7 +20,7 @@
           <tr>
             <td>{{$noticia->id}}</td>
             <td>{{$noticia->titulo}}</td>
-            <td>{{$noticia->autor}}</td>
+            <td>{{$noticia->autor->nome}}</td>
             <td>{{$noticia->data->format('d/m/Y')}}</td>
             <td>{{$noticia->categoria->descricao}}</td>
             <td><a class='btn btn-primary' href='editar/{{$noticia->id}}'>+</a></td>
