@@ -1,6 +1,18 @@
 @extends('template')
 
 @section('conteudo')
+  @if ($errors->any())
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
+      </div>
+  @endif
+
+
+
   <h1>Listagem de Notícias</h1>
   <a href="novo" class="btn btn-primary">Novo</a>
   <table class="table table-bordered table-striped">

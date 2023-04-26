@@ -38,7 +38,8 @@ class NoticiaController extends Controller
      $noticia->data = $request->input('data');
      $noticia->categoria_id = $request->input('categoria_id');
      $noticia->save();
-     return redirect('noticia/listar');
+     return redirect('noticia/listar')
+     ->with(['msg' => "Notícia '$noticia->titulo' foi salva"]);
    }
 
 
@@ -75,8 +76,11 @@ class NoticiaController extends Controller
 
    function excluir($id) {
      $noticia = Noticia::find($id);
+     $titulo = $noticia->titulo;
      $noticia->delete();
-     return redirect('noticia/listar');
+
+     return redirect('noticia/listar')
+        ->with(['msg' => "Notícia $titulo foi excluída"]);
    }
 
 

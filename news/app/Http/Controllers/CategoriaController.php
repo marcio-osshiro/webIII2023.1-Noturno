@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Categoria;
-
 class CategoriaController extends Controller
 {
     //
@@ -18,6 +17,8 @@ class CategoriaController extends Controller
     function novo() {
       $categoria = new Categoria();
       $categoria->id = 0;
+      $categoria->imagem = "";
+      $categoria->descricao = "";
       return view('frmCategoria', compact('categoria'));
     }
 
@@ -27,6 +28,18 @@ class CategoriaController extends Controller
       } else {
         $categoria = Categoria::find($request->input('id'));
       }
+      $categoria->imagem = $request->input('imagem');
+      if ($request->hasFile('arquivo')) {
+          $file = $request->file('arquivo');
+          $upload = $file->store('public/imagens');
+          $upload = explode("/", $upload);
+          $tamanho = sizeof($upload);
+          if $categoria->imagem != "") {
+            Storage::delete("public/imagens/".$categoria->imagem);
+          }
+          $categoria->imagem = $upload[$tamanho-1];
+      }
+
       $categoria->descricao = $request->input('descricao');
       $categoria->save();
       return redirect('categoria/listar');
@@ -39,7 +52,12 @@ class CategoriaController extends Controller
 
     function excluir($id) {
       $categoria = Categoria::find($id);
-      $categoria->delete();
-      return redirect('categoria/listar');
+      try {
+        $categoria->delete();
+      } catch(\Exception $e) {
+        return redirect('categoria/listar')->with(['msg' => 'Categoria não pode ser excluída']);
+      }
+      return redirect('categoria/listar')->with(['msg'=> 'Categoria excluída']);
+
     }
 }

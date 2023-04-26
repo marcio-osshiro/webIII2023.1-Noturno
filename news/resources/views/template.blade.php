@@ -185,6 +185,11 @@
 
 <main class="container">
   <div class="bg-body-tertiary p-5 rounded">
+    @if (session('msg') )
+        <div class="alert alert-primary">
+            <p>{{ session('msg') }}</p>
+        </div>
+    @endif
     @yield('conteudo')
   </div>
 </main>

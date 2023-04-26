@@ -5,7 +5,7 @@
 -- Dumped from database version 11.18 (Debian 11.18-1.pgdg100+1)
 -- Dumped by pg_dump version 15.1 (Debian 15.1-1.pgdg100+1)
 
--- Started on 2023-04-06 22:27:41 -04
+-- Started on 2023-04-25 22:20:41 -04
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -61,7 +61,7 @@ CREATE SEQUENCE public.autor_id_seq
 ALTER TABLE public.autor_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2930 (class 0 OID 0)
+-- TOC entry 2931 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: autor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -76,7 +76,8 @@ ALTER SEQUENCE public.autor_id_seq OWNED BY public.autor.id;
 
 CREATE TABLE public.categoria (
     id integer NOT NULL,
-    descricao character varying(100)
+    descricao character varying(100),
+    imagem character varying(45)
 );
 
 
@@ -99,7 +100,7 @@ CREATE SEQUENCE public.categoria_id_seq
 ALTER TABLE public.categoria_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2931 (class 0 OID 0)
+-- TOC entry 2932 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: categoria_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -141,7 +142,7 @@ CREATE SEQUENCE public.noticia_id_seq
 ALTER TABLE public.noticia_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2932 (class 0 OID 0)
+-- TOC entry 2933 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: noticia_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -174,7 +175,7 @@ ALTER TABLE ONLY public.noticia ALTER COLUMN id SET DEFAULT nextval('public.noti
 
 
 --
--- TOC entry 2918 (class 0 OID 29882)
+-- TOC entry 2919 (class 0 OID 29882)
 -- Dependencies: 196
 -- Data for Name: autor; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -184,20 +185,21 @@ INSERT INTO public.autor VALUES (1, 'Machado de Assis', 'machado.de@assis.com');
 
 
 --
--- TOC entry 2920 (class 0 OID 29887)
+-- TOC entry 2921 (class 0 OID 29887)
 -- Dependencies: 198
 -- Data for Name: categoria; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.categoria VALUES (1, 'Esporte');
-INSERT INTO public.categoria VALUES (3, 'Culinária');
-INSERT INTO public.categoria VALUES (6, 'Mundo');
-INSERT INTO public.categoria VALUES (4, 'Política4');
-INSERT INTO public.categoria VALUES (5, 'BBB');
+INSERT INTO public.categoria VALUES (1, 'Esporte', NULL);
+INSERT INTO public.categoria VALUES (3, 'Culinária', NULL);
+INSERT INTO public.categoria VALUES (4, 'Política4', NULL);
+INSERT INTO public.categoria VALUES (5, 'BBB', NULL);
+INSERT INTO public.categoria VALUES (11, 'teste', 'HwCBNADs3QYscVzzyDsgNQ0kkvsqvEDD8ZCyvgjD.jpg');
+INSERT INTO public.categoria VALUES (10, 'kdfjkdj', 'A6YeLOjler4kAVh0XGrg8ojYmJUF7XpoH2Pymi0S.png');
 
 
 --
--- TOC entry 2922 (class 0 OID 29892)
+-- TOC entry 2923 (class 0 OID 29892)
 -- Dependencies: 200
 -- Data for Name: noticia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -208,7 +210,7 @@ INSERT INTO public.noticia VALUES (7, 'teste 06 de abril', 'teste', '2023-04-06'
 
 
 --
--- TOC entry 2933 (class 0 OID 0)
+-- TOC entry 2934 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: autor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -217,21 +219,21 @@ SELECT pg_catalog.setval('public.autor_id_seq', 4, true);
 
 
 --
--- TOC entry 2934 (class 0 OID 0)
+-- TOC entry 2935 (class 0 OID 0)
 -- Dependencies: 199
 -- Name: categoria_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.categoria_id_seq', 9, true);
+SELECT pg_catalog.setval('public.categoria_id_seq', 11, true);
 
 
 --
--- TOC entry 2935 (class 0 OID 0)
+-- TOC entry 2936 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: noticia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.noticia_id_seq', 7, true);
+SELECT pg_catalog.setval('public.noticia_id_seq', 8, true);
 
 
 --
@@ -262,7 +264,16 @@ ALTER TABLE ONLY public.noticia
 
 
 --
--- TOC entry 2929 (class 0 OID 0)
+-- TOC entry 2797 (class 2606 OID 29942)
+-- Name: noticia fk_categoria; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.noticia
+    ADD CONSTRAINT fk_categoria FOREIGN KEY (categoria_id) REFERENCES public.categoria(id) NOT VALID;
+
+
+--
+-- TOC entry 2930 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -271,7 +282,7 @@ REVOKE USAGE ON SCHEMA public FROM PUBLIC;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2023-04-06 22:27:41 -04
+-- Completed on 2023-04-25 22:20:42 -04
 
 --
 -- PostgreSQL database dump complete
