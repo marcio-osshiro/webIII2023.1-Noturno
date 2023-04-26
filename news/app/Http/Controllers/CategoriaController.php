@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Categoria;
+use Illuminate\Support\Facades\Storage;
 class CategoriaController extends Controller
 {
     //
@@ -34,7 +35,7 @@ class CategoriaController extends Controller
           $upload = $file->store('public/imagens');
           $upload = explode("/", $upload);
           $tamanho = sizeof($upload);
-          if $categoria->imagem != "") {
+          if ($categoria->imagem != "") {
             Storage::delete("public/imagens/".$categoria->imagem);
           }
           $categoria->imagem = $upload[$tamanho-1];
