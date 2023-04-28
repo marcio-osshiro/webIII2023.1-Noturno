@@ -29,7 +29,6 @@ class CategoriaController extends Controller
       } else {
         $categoria = Categoria::find($request->input('id'));
       }
-      $categoria->imagem = $request->input('imagem');
       if ($request->hasFile('arquivo')) {
           $file = $request->file('arquivo');
           $upload = $file->store('public/imagens');
@@ -53,6 +52,9 @@ class CategoriaController extends Controller
 
     function excluir($id) {
       $categoria = Categoria::find($id);
+      if ($categoria->imagem != "") {
+        Storage::delete("public/imagens/".$categoria->imagem);
+      }
       try {
         $categoria->delete();
       } catch(\Exception $e) {

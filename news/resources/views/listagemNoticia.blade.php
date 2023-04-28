@@ -19,6 +19,7 @@
     <thead>
       <tr>
         <th>ID</th>
+        <th>Figura</th>
         <th>Titulo</th>
         <th>Autor</th>
         <th>Data</th>
@@ -31,6 +32,10 @@
       @foreach($noticias as $noticia)
           <tr>
             <td>{{$noticia->id}}</td>
+            <td>
+              @if ($noticia->imagem != "")
+                <img style="width: 50px;" src="/storage/imagens/{{$noticia->imagem}}">
+              @endif            </td>
             <td>{{$noticia->titulo}}</td>
             <td>{{$noticia->autor->nome}}</td>
             <td>{{$noticia->data->format('d/m/Y')}}</td>

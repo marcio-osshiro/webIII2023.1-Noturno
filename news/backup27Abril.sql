@@ -5,7 +5,7 @@
 -- Dumped from database version 11.18 (Debian 11.18-1.pgdg100+1)
 -- Dumped by pg_dump version 15.1 (Debian 15.1-1.pgdg100+1)
 
--- Started on 2023-04-25 22:20:41 -04
+-- Started on 2023-04-27 22:24:08 -04
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -38,7 +38,8 @@ SET default_tablespace = '';
 CREATE TABLE public.autor (
     id integer NOT NULL,
     nome character varying(100),
-    email character varying(100)
+    email character varying(100),
+    imagem character varying(45)
 );
 
 
@@ -119,7 +120,8 @@ CREATE TABLE public.noticia (
     descricao text,
     data date,
     categoria_id integer,
-    autor_id integer
+    autor_id integer,
+    imagem character varying(50)
 );
 
 
@@ -180,8 +182,8 @@ ALTER TABLE ONLY public.noticia ALTER COLUMN id SET DEFAULT nextval('public.noti
 -- Data for Name: autor; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.autor VALUES (3, 'Wilian Boner', 'boner@globo.com');
-INSERT INTO public.autor VALUES (1, 'Machado de Assis', 'machado.de@assis.com');
+INSERT INTO public.autor VALUES (3, 'Wilian Boner', 'boner@globo.com', NULL);
+INSERT INTO public.autor VALUES (1, 'Machado de Assis', 'machado.de@assis.com', '7xUsBpkSNuMIDlMIYiEt3wWkcXOJrtQxGI7ctJF3.svg');
 
 
 --
@@ -195,7 +197,7 @@ INSERT INTO public.categoria VALUES (3, 'Culinária', NULL);
 INSERT INTO public.categoria VALUES (4, 'Política4', NULL);
 INSERT INTO public.categoria VALUES (5, 'BBB', NULL);
 INSERT INTO public.categoria VALUES (11, 'teste', 'HwCBNADs3QYscVzzyDsgNQ0kkvsqvEDD8ZCyvgjD.jpg');
-INSERT INTO public.categoria VALUES (10, 'kdfjkdj', 'A6YeLOjler4kAVh0XGrg8ojYmJUF7XpoH2Pymi0S.png');
+INSERT INTO public.categoria VALUES (10, 'kdfjkdj', '07nhgIsfAGuw3qEyz2upGyj4NKtKwcUtBuVAduc5.svg');
 
 
 --
@@ -204,9 +206,9 @@ INSERT INTO public.categoria VALUES (10, 'kdfjkdj', 'A6YeLOjler4kAVh0XGrg8ojYmJU
 -- Data for Name: noticia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.noticia VALUES (2, 'Argentina é campeã da copa do mundo', 'Após várias décadas, a Argentina conquista o bi-campeonato da Copa do Mundo. Messi substitui Maradona.', '2022-11-30', 1, 3);
-INSERT INTO public.noticia VALUES (1, 'Terremoto na Turquia / Europa', 'Um grande terremoto destruiu várias cidades na Turquia. Vários países estão se mobilizando para ajudar no resgate das vítimas.', '2023-04-04', 4, 3);
-INSERT INTO public.noticia VALUES (7, 'teste 06 de abril', 'teste', '2023-04-06', 3, 3);
+INSERT INTO public.noticia VALUES (1, 'Terremoto na Turquia / Europa', 'Um grande terremoto destruiu várias cidades na Turquia. Vários países estão se mobilizando para ajudar no resgate das vítimas.', '2023-04-04', 4, 3, NULL);
+INSERT INTO public.noticia VALUES (7, 'teste 06 de abril', 'teste', '2023-04-06', 3, 3, NULL);
+INSERT INTO public.noticia VALUES (2, 'Argentina é campeã da copa do mundo', 'Após várias décadas, a Argentina conquista o bi-campeonato da Copa do Mundo. Messi substitui Maradona.', '2022-11-30', 1, 3, 'kUhWg96GQYqzkFrxOB5iauH7LAV9qN6MzEZRFSFG.png');
 
 
 --
@@ -282,7 +284,7 @@ REVOKE USAGE ON SCHEMA public FROM PUBLIC;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2023-04-25 22:20:42 -04
+-- Completed on 2023-04-27 22:24:08 -04
 
 --
 -- PostgreSQL database dump complete

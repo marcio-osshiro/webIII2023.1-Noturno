@@ -7,6 +7,8 @@ use App\Models\Noticia;
 use App\Models\Categoria;
 use App\Models\Autor;
 use App\Http\Requests\NoticiaRequest;
+use Illuminate\Support\Facades\Storage;
+
 
 class NoticiaController extends Controller
 {
@@ -32,6 +34,17 @@ class NoticiaController extends Controller
      } else {
        $noticia = Noticia::find($request->input('id'));
      }
+     if ($request->hasFile('arquivo')) {
+         $file = $request->file('arquivo');
+         $upload = $file->store('public/imagens');
+         $upload = explode("/", $upload);
+         $tamanho = sizeof($upload);
+         if ($noticia->imagem != "") {
+           Storage::delete("public/imagens/".$noticia->imagem);
+         }
+         $noticia->imagem = $upload[$tamanho-1];
+     }
+
      $noticia->titulo = $request->input('titulo');
      $noticia->descricao = $request->input('descricao');
      $noticia->autor_id = $request->input('autor_id');
@@ -77,6 +90,10 @@ class NoticiaController extends Controller
    function excluir($id) {
      $noticia = Noticia::find($id);
      $titulo = $noticia->titulo;
+     if ($noticia->imagem != "") {
+       Storage::delete("public/imagens/".$noticia->imagem);
+     }
+
      $noticia->delete();
 
      return redirect('noticia/listar')

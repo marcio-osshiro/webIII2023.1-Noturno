@@ -7,6 +7,7 @@
     <thead>
       <tr>
         <th>ID</th>
+        <th>Figura</th>
         <th>Nome</th>
         <th>E-mail</th>
         <th></th>
@@ -17,6 +18,10 @@
       @foreach($autores as $autor)
           <tr>
             <td>{{$autor->id}}</td>
+            <td>
+              @if ($autor->imagem != "")
+                <img style="width: 50px;" src="/storage/imagens/{{$autor->imagem}}">
+              @endif            </td>
             <td>{{$autor->nome}}</td>
             <td>{{$autor->email}}</td>
             <td><a class='btn btn-primary' href='editar/{{$autor->id}}'>+</a></td>

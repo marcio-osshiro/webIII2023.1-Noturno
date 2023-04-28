@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Autor;
+use Illuminate\Support\Facades\Storage;
+
 
 class AutorController extends Controller
 {
@@ -25,6 +27,18 @@ class AutorController extends Controller
     } else {
       $autor = Autor::find($request->input('id'));
     }
+    if ($request->hasFile('arquivo')) {
+        $file = $request->file('arquivo');
+        $upload = $file->store('public/imagens');
+        $upload = explode("/", $upload);
+        $tamanho = sizeof($upload);
+        if ($autor->imagem != "") {
+          Storage::delete("public/imagens/".$autor->imagem);
+        }
+        $autor->imagem = $upload[$tamanho-1];
+    }
+
+
     $autor->nome = $request->input('nome');
     $autor->email = $request->input('email');
     $autor->save();
@@ -38,6 +52,9 @@ class AutorController extends Controller
 
   function excluir($id) {
     $autor = Autor::find($id);
+    if ($autor->imagem != "") {
+      Storage::delete("public/imagens/".$autor->imagem);
+    }
     $autor->delete();
     return redirect('autor/listar');
   }

@@ -8,8 +8,6 @@
 
   <form action="{{url('categoria/salvar')}}" method="post" enctype="multipart/form-data">
     @csrf
-    <input class="form-control" type="hidden" name="imagem" value="{{$categoria->imagem}}">
-
     <div class="mb-3 @if($categoria->id==0) d-none @endif">
       <label for="id" class="form-label">ID</label>
       <input readonly class="form-control" readonly type="text" name="id" value="{{$categoria->id}}">

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\NoticiaController;
-
+use App\Http\Controllers\NewsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,3 +44,5 @@ Route::get('/noticia/novo', [NoticiaController::class, 'novo']);
 Route::get('/noticia/editar/{id}', [NoticiaController::class, 'editar']);
 Route::get('/noticia/excluir/{id}', [NoticiaController::class, 'excluir']);
 Route::post('/noticia/salvar', [NoticiaController::class, 'salvar']);
+
+Route::get('/news', [NewsController::class, 'index']);
