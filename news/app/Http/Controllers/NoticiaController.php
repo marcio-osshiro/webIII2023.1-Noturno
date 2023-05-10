@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 class NoticiaController extends Controller
 {
   function listar() {
-    $noticias = Noticia::orderByRaw('data, id')->get();
+    $noticias = Noticia::orderByRaw('data, id')->paginate(5);
     return view('listagemNoticia',
                 compact('noticias'));
    }

@@ -21,7 +21,16 @@ class NewsController extends Controller
       $noticiaAtual = Noticia::find($id);
       $categorias = Categoria::orderBy('descricao')->get();
       $noticiasCategoria = Noticia::where('categoria_id',
-        $noticiaAtual->categoria->id)->orderBy('data', 'desc')->get();
+        $noticiaAtual->categoria->id)->orderBy('data', 'desc')->paginate(5);
+      return view('noticia', compact('noticiaAtual', 'categorias', 'noticiasCategoria'));
+    }
+
+    function categoria($id) {
+      $categorias = Categoria::orderBy('descricao')->get();
+      $noticiasCategoria = Noticia::where('categoria_id',
+        $id)->orderBy('data', 'desc')->paginate(5);
+      $noticiaAtual = $noticiasCategoria
+      ->shift();
       return view('noticia', compact('noticiaAtual', 'categorias', 'noticiasCategoria'));
     }
 }

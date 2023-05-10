@@ -2,7 +2,7 @@
 
 @section('conteudo')
 <main>
-  <h1>Últimas Notícias</h1>
+  <h1 style="color: blue;">Últimas Notícias</h1>
   <!-- carrossel -->
   <div id="carouselPrincipal" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
@@ -15,8 +15,8 @@
       <div class="carousel-item {{$loop->first?'active':''}} ratio" style="--bs-aspect-ratio: 20%;">
         <img src="/storage/imagens/{{$noticia->imagem}}" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h5><a href="news/noticia/{{$noticia->id}}">{{$noticia->titulo}}</a></h5>
-          <p>{{$noticia->autor->nome}} - {{$noticia->data->format('d/m/Y')}}</p>
+          <h5><a style="color:white" href="news/noticia/{{$noticia->id}}">{{$noticia->titulo}}</a></h5>
+          <p style="font-size:0.75rem;">{{$noticia->autor->nome}} - {{$noticia->data->format('d/m/Y')}}</p>
         </div>
       </div>
     @endforeach
@@ -34,7 +34,7 @@
 <div class="artigos">
   @foreach($categorias as $categoria)
   <article>
-    <h1>{{$categoria->descricao}}</h1>
+    <h1 style="color: green;">{{$categoria->descricao}}</h1>
     <!-- carrossel -->
     <div id="carousel-cat{{$loop->index}}" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
@@ -47,8 +47,8 @@
         <div class="carousel-item {{$loop->first?'active': ''}} ratio" style="--bs-aspect-ratio: 50%;">
           <img src="/storage/imagens/{{$noticia->imagem}}" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h5><a href='{{url("news/noticia/$noticia->id")}}'>{{$noticia->titulo}}</a></h5>
-            <p>{{$noticia->autor->nome}} - {{$noticia->data->format('d/m/Y')}}</p>
+            <h5><a style="color:white" href='{{url("news/noticia/$noticia->id")}}'>{{$noticia->titulo}}</a></h5>
+            <p style="font-size:0.75rem;">{{$noticia->autor->nome}} - {{$noticia->data->format('d/m/Y')}}</p>
           </div>
         </div>
         @endforeach

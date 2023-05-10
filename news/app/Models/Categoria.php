@@ -15,7 +15,7 @@ class Categoria extends Model
 
     public function noticias(): HasMany
     {
-        return $this->hasMany(Noticia::class)->take(3);
+        return $this->hasMany(Noticia::class)->orderByRaw('data desc')->take(3);
     }
 
 }

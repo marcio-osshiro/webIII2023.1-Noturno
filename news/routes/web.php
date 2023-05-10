@@ -47,3 +47,4 @@ Route::post('/noticia/salvar', [NoticiaController::class, 'salvar']);
 
 Route::get('/news', [NewsController::class, 'index']);
 Route::get('/news/noticia/{id}', [NewsController::class, 'noticia']);
+Route::get('/news/categoria/{id}', [NewsController::class, 'categoria']);
