@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\NewsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,34 +18,44 @@ use App\Http\Controllers\NewsController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-// Route::get('/categoria/listar', function() {
-//     echo "estarei listando em instantes ...";
+// Route::get('/', function () {
+//     return view('welcome');
 // });
 
-Route::get('/categoria/listar', [CategoriaController::class, 'listar']);
-Route::get('/categoria/novo', [CategoriaController::class, 'novo']);
-Route::get('/categoria/editar/{id}', [CategoriaController::class, 'editar']);
-Route::get('/categoria/excluir/{id}', [CategoriaController::class, 'excluir']);
-Route::post('/categoria/salvar', [CategoriaController::class, 'salvar']);
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-Route::get('/autor/listar', [AutorController::class, 'listar']);
-Route::get('/autor/novo', [AutorController::class, 'novo']);
-Route::get('/autor/editar/{id}', [AutorController::class, 'editar']);
-Route::get('/autor/excluir/{id}', [AutorController::class, 'excluir']);
-Route::post('/autor/salvar', [AutorController::class, 'salvar']);
+    Route::get('/categoria/listar', [CategoriaController::class, 'listar']);
+    Route::get('/categoria/novo', [CategoriaController::class, 'novo']);
+    Route::get('/categoria/editar/{id}', [CategoriaController::class, 'editar']);
+    Route::get('/categoria/excluir/{id}', [CategoriaController::class, 'excluir']);
+    Route::post('/categoria/salvar', [CategoriaController::class, 'salvar']);
 
+    Route::get('/autor/listar', [AutorController::class, 'listar']);
+    Route::get('/autor/novo', [AutorController::class, 'novo']);
+    Route::get('/autor/editar/{id}', [AutorController::class, 'editar']);
+    Route::get('/autor/excluir/{id}', [AutorController::class, 'excluir']);
+    Route::post('/autor/salvar', [AutorController::class, 'salvar']);
 
-Route::get('/noticia/listar', [NoticiaController::class, 'listar']);
-Route::get('/noticia/novo', [NoticiaController::class, 'novo']);
-Route::get('/noticia/editar/{id}', [NoticiaController::class, 'editar']);
-Route::get('/noticia/excluir/{id}', [NoticiaController::class, 'excluir']);
-Route::post('/noticia/salvar', [NoticiaController::class, 'salvar']);
+    Route::get('/noticia/listar', [NoticiaController::class, 'listar']);
+    Route::get('/noticia/novo', [NoticiaController::class, 'novo']);
+    Route::get('/noticia/editar/{id}', [NoticiaController::class, 'editar']);
+    Route::get('/noticia/excluir/{id}', [NoticiaController::class, 'excluir']);
+    Route::post('/noticia/salvar', [NoticiaController::class, 'salvar']);
+
+    Route::get('/', function () {
+        return view('index');
+    });
+});
 
 Route::get('/news', [NewsController::class, 'index']);
 Route::get('/news/noticia/{id}', [NewsController::class, 'noticia']);
 Route::get('/news/categoria/{id}', [NewsController::class, 'categoria']);
+
+require __DIR__.'/auth.php';
