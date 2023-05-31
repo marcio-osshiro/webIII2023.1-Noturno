@@ -41,7 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/autor/novo', [AutorController::class, 'novo']);
     Route::get('/autor/editar/{id}', [AutorController::class, 'editar']);
     Route::get('/autor/excluir/{id}', [AutorController::class, 'excluir']);
+    Route::get('/autor/mensagem/{id}', [AutorController::class, 'mensagem']);
     Route::post('/autor/salvar', [AutorController::class, 'salvar']);
+    Route::post('/autor/mensagem', [AutorController::class, 'enviarMensagem']);
 
     Route::get('/noticia/listar', [NoticiaController::class, 'listar']);
     Route::get('/noticia/novo', [NoticiaController::class, 'novo']);

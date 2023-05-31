@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Autor;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AutorMensagem;
 
 class AutorController extends Controller
 {
@@ -56,6 +57,20 @@ class AutorController extends Controller
       Storage::delete("public/imagens/".$autor->imagem);
     }
     $autor->delete();
+    return redirect('autor/listar');
+  }
+
+  function mensagem($id) {
+    $autor = Autor::find($id) ;
+    return view('frmMensagem', compact('autor'));
+
+  }
+
+  function enviarMensagem(Request $request) {
+    $id = $request->input('id');
+    $mensagem = $request->input('mensagem');
+    $autor = Autor::find($id) ;
+    Mail::to($autor->email)->send(new AutorMensagem($autor, $mensagem));
     return redirect('autor/listar');
   }
 

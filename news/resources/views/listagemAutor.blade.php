@@ -12,6 +12,7 @@
         <th>E-mail</th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +27,7 @@
             <td>{{$autor->email}}</td>
             <td><a class='btn btn-primary' href='editar/{{$autor->id}}'>+</a></td>
             <td><a class='btn btn-danger' href='excluir/{{$autor->id}}'>-</a></td>
+            <td><a class='btn btn-primary' href='mensagem/{{$autor->id}}'>Mensagem</a></td>
           </tr>
       @endforeach
 
