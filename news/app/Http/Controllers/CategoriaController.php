@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Categoria;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class CategoriaController extends Controller
 {
     //
@@ -62,5 +64,11 @@ class CategoriaController extends Controller
       }
       return redirect('categoria/listar')->with(['msg'=> 'Categoria excluída']);
 
+    }
+
+    function relatorio() {
+      $categorias = Categoria::orderBy('descricao')->get();
+      $pdf = Pdf::loadView('relatorioCategoria', compact('categorias'));
+      return $pdf->download('categorias.pdf');
     }
 }

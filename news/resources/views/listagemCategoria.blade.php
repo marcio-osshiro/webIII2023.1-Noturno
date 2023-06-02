@@ -14,6 +14,7 @@
 
   <h1>Listagem de Categorias</h1>
   <a href="novo" class="btn btn-primary">Novo</a>
+  <a href="relatorio" class="btn btn-primary">Relatório</a>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
